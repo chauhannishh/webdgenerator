@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+{% load widget_tweaks%}
+<html lang="en">
+
+<head>
+    <title>Website Generator</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="{{ data.college_name }}">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    {% load static %}
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+    <link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+    <link rel="shortcut icon" href="http://127.0.0.1:8000/media/{{data.logo}}" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+        body {
+            font-family: Arial;
+
+        }
+
+        .main_nav li a:hover,
+        .main_nav li.active a {
+            color: red;
+            text-decoration: none;
+        }
+
+        /* Style the tab */
+        .tab {
+            overflow: hidden;
+            border: 1px solid #ccc;
+            background-color: #f1f1f1;
+        }
+
+        /* Style the buttons inside the tab */
+        .tab button {
+            background-color: inherit;
+            float: left;
+            border: none;
+            outline: none;
+            cursor: pointer;
+            padding: 14px 16px;
+            transition: 0.3s;
+            font-size: 17px;
+        }
+
+        /* Change background color of buttons on hover */
+        .tab button:hover {
+            background-color: #ddd;
+        }
+
+        /* Create an active/current tablink class */
+        .tab button.active {
+            background-color: #ccc;
+        }
+
+        /* Style the tab content */
+        .tabcontent {
+            display: none;
+            padding: 6px 12px;
+            border: 1px solid #ccc;
+            border-top: none;
+            background: white;
+        }
+
+        .header_container {
+            width: 100%;
+            background: none;
+        }
+
+        .collapsible {
+            background-color: #777;
+            color: white;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 15px;
+        }
+
+        .active,
+        .collapsible:hover {
+            background-color: #555;
+        }
+
+        .content {
+            padding: 0 18px;
+            display: none;
+            overflow: hidden;
+            background-color: #f1f1f1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="super_container">
+
+        <!-- Header -->
+
+
+        <div class="features" style="background-image: url('http://127.0.0.1:8000/media/source.gif');">
+            <div class="container">
+                <div class="row">
+                    <div class="col">
+                        <div class="tab">
+                            <button class="tablinks active" onclick="openCity(event, 'London')">College</button>
+                            <button class="tablinks" onclick="openCity(event, 'Paris')">Department</button>
+                            <button class="tablinks" onclick="openCity(event, 'London2')">Syllabus</button>
+                            <button class="tablinks" onclick="openCity(event, 'London3')">Upcomming Events</button>
+                            <div class="tablinks" style="float: right;margin-top: 10px;"><a
+                                    style="    font-size: 19px;padding: 40px;"
+                                    href="{% url 'admin_user_logout' %}">Logout</a></div>
+                        </div>
+
+                        <div id="London" class="tabcontent" style="display: block;">
+                            {% if hasCollege %}
+
+                            <!--Start-->
+                            <div class="container" style="width: 100%;">
+                                <h2>College Form</h2>
+                                <form action="{% url 'website_render' %}" class="form-horizontal" method="POST"
+                                    enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <input type="hidden" name="college_id" value="{{CollegeObj.college_id}}">
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">College name:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="college_name" maxlength="50" class="form-control"
+                                                required="" value="{{CollegeObj.college_name}}">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">University:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="university" maxlength="50" class="form-control"
+                                                required="" value="{{CollegeObj.university}}">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Address:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="address" maxlength="200" class="form-control"
+                                                required="" value="{{CollegeObj.address}}">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Contact number:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="text" name="contact_number" maxlength="15" class="form-control"
+                                                required="" value="{{CollegeObj.contact_number}}">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Logo:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="logo" accept="image/*" class="form-control">
+                                            <br>
+                                            <img src="http://127.0.0.1:8000/media/{{CollegeObj.logo}}"
+                                                style="width: 100px;height: 150px;">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Domain:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <select name="domain" class="form-control" required="">
+                                                {% if CollegeObj.domain == "Engineering"%}
+                                                <option value="Engineering" selected>Engineering</option>
+                                                <option value="Management">Management</option>
+                                                <option value="Both">Both</option>
+                                                {%endif%}
+                                                {% if CollegeObj.domain == "Management"%}
+                                                <option value="Engineering">Engineering</option>
+                                                <option value="Management" selected>Management</option>
+                                                <option value="Both">Both</option>
+                                                {%endif%}
+                                                {% if CollegeObj.domain == "Both"%}
+                                                <option value="Engineering">Engineering</option>
+                                                <option value="Management">Management</option>
+                                                <option value="Both" selected>Both</option>
+                                                {%endif%}
+                                            </select>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">About us:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <textarea name="about_us" cols="40" rows="10" maxlength="1000"
+                                                class="form-control" required="">{{CollegeObj.about_us}}</textarea>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Image1:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="image1" accept="image/*" class="form-control"
+                                                value="{{CollegeObj.image1}}">
+                                            <br>
+                                            <img src="http://127.0.0.1:8000/media/{{CollegeObj.image1}}"
+                                                style="width: 300px;height: 150px;">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Image2:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="image2" accept="image/*" class="form-control">
+                                            <br>
+                                            <img src="http://127.0.0.1:8000/media/{{CollegeObj.image2}}"
+                                                style="width: 300px;height: 150px;">
+
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Image3:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="image3" accept="image/*" class="form-control"
+                                                value="http://127.0.0.1:8000/media/{{CollegeObj.image3}}">
+                                            <br>
+                                            <img src="http://127.0.0.1:8000/media/{{CollegeObj.image3}}"
+                                                style="width: 300px;height: 150px;">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Image4:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="image4" accept="image/*" class="form-control">
+                                            <br>
+                                            <img src="http://127.0.0.1:8000/media/{{CollegeObj.image4}}"
+                                                style="width: 300px;height: 150px;">
+                                        </div>
+
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">Image5:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            <input type="file" name="image5" accept="image/*" class="form-control">
+                                            <br>
+                                            <img src="http://127.0.0.1:8000/media/{{CollegeObj.image5}}"
+                                                style="width: 300px;height: 150px;">
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <label class="control-label col-sm-2" for="college_name"></label>
+                                    <input type="hidden" name="update" value="1">
+                                    <button type="submit" name="submit" value="clg"
+                                        class="btn btn-primary">Update</button>
+                                </form>
+
+
+                            </div>
+                            <!--End-->
+                            {% else %}
+                            <div class="container" style="width: 100%;">
+                                <h2>College Form</h2>
+                                <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% for field in clgForm.visible_fields %}
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="college_name">{{field.label}}:
+                                        </label>
+                                        <div class="col-sm-10">
+                                            {% render_field field class+="form-control" placeholder=field.label required="required"%}
+                                        </div>
+
+                                    </div>
+                                    {% endfor %}
+
+
+                                    <label class="control-label col-sm-2" for="college_name"></label>
+                                    <button type="submit" name="submit" value="clg"
+                                        class="btn btn-primary">Submit</button>
+                                </form>
+
+
+                            </div>
+                            {%endif%}
+                        </div>
+
+                        <div id="Paris" class="tabcontent" style="background: white;">
+                            <div class="container" style="width: 100%;">
+                                <h2>Department Form</h2>
+                                {% for myval in departments %}
+                                <button type="button" class="collapsible">{{myval.department_name}}</button>
+                                <div class="content">
+                                    <p>
+                                        <form class="form-horizontal" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="college_id" value="{{college_id}}">
+                                            <input type="hidden" name="department_id" value="{{myval.department_id}}">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="college_name">Department
+                                                    Name:
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" name="department_name"
+                                                        value="{{myval.department_name}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="college_name">Vision Mission:
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control"
+                                                        name="vision_mission">{{myval.vision_mission}}</textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="college_name">HOD:
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" name="hod"
+                                                        value="{{myval.hod}}">
+                                                </div>
+                                            </div>
+
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="college_name">Count :
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input type="text" name="count" maxlength="50" class="form-control"
+                                                        required="" placeholder="Count" value="{{myval.count}}">
+                                                </div>
+                                            </div>
+                                            <input type="hidden" name="update" value="1">
+
+                                            <label class="control-label col-sm-2" for="college_name"></label>
+                                            <button type="submit" name="submit" value="dept"
+                                                class="btn btn-primary">Update</button>
+                                            <a class="btn btn-primary" data-toggle="modal"
+                                                data-target="#val{{myval.department_id}}" href="">Subjects</a>
+                                        </form>
+                                    </p>
+                                </div>
+
+
+
+                                <div class="modal fade" id="val{{myval.department_id}}" tabindex="-1" role="dialog"
+                                    aria-labelledby="valtitle{{myval.department_id}}" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="valLongTitle{{myval.department_id}}">
+                                                    Subjects</h5>
+                                                <button type="button" class="close" data-dismiss="modal"
+                                                    aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            {% for subs in myval.subjects%}
+                                            <button type="button" class="collapsible">{{subs.subject_name}}</button>
+                                            <div class="content">
+                                                <p>
+                                                    <form class="form-horizontal" method="POST">
+                                                        {% csrf_token %}
+                                                        <input type="hidden" name="college_id" value="{{college_id}}">
+                                                        <input type="hidden" name="department_id"
+                                                            value="{{myval.department_id}}">
+                                                            <input type="hidden" name="subject_id"
+                                                            value="{{subs.subject_id}}">
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-2"
+                                                                for="college_name">Subject Name:
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                                <input class="form-control" type="text"
+                                                                    name="subject_name" value="{{subs.subject_name}}">
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-2"
+                                                                for="college_name">Semester:
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                                <input class="form-control" type="text" name="semester"
+                                                                    value="{{subs.semester}}">
+                                                            </div>
+                                                        </div>
+                                                        <input type="hidden" name="update" value="1">
+
+                                                        <label class="control-label col-sm-2"
+                                                            for="college_name"></label>
+                                                        <button type="submit" name="submit" value="subject"
+                                                            class="btn btn-primary">Update</button>
+                                                    </form>
+                                                </p>
+                                            </div>
+
+                                            {% endfor %}
+                                            <button type="button" class="collapsible">Add Subject</button>
+                                            <div class="content">
+                                                <form class="form-horizontal" method="POST">
+                                                    <div class="modal-body">
+
+
+                                                        {% csrf_token %}
+
+
+                                                        {% for field in subForm.visible_fields %}
+                                                        <div class="form-group">
+                                                            <label class="control-label col-sm-2"
+                                                                for="college_name">{{field.label}}:
+                                                            </label>
+                                                            <div class="col-sm-10">
+                                                                {% render_field field class+="form-control" placeholder=field.label%}
+                                                            </div>
+                                                        </div>
+                                                        {% endfor %}
+                                                        <label class="control-label col-sm-2"
+                                                            for="college_name"></label>
+                                                        <input type="hidden" name="department"
+                                                            value="{{myval.department_id}}">
+                                                        <input type="hidden" name="college" value="{{college_id}}">
+
+                                                    </div>
+                                                    <div class="modal-footer" style="margin-top: 10px;">
+                                                        <button type="button" class="btn btn-secondary"
+                                                            data-dismiss="modal">Close</button>
+                                                        <button type="submit" name="submit" value="subject"
+                                                            class="btn btn-primary">Submit</button>
+                                                    </div>
+
+                                                </form>
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor%}
+
+                                <button type="button" class="collapsible">Add Department</button>
+                                <div class="content">
+                                    <form class="form-horizontal" method="POST">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="college_id" value="{{college_id}}">
+                                        {% for field in deptForm.visible_fields %}
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="college_name">{{field.label}}:
+                                            </label>
+                                            <div class="col-sm-10">
+
+                                                {% render_field field class+="form-control" placeholder=field.label required="required"%}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+
+
+                                        <label class="control-label col-sm-2" for="college_name"></label>
+                                        <button type="submit" name="submit" value="dept"
+                                            class="btn btn-primary">Submit</button>
+                                    </form>
+                                </div>
+
+                            </div>
+                        </div>
+
+
+                        <div id="London3" class="tabcontent">
+
+                            <div class="container" style="width: 100%;">
+                                <h2>Upcomming Events Form</h2>
+                                <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    {% for field in upForm.visible_fields %}
+                                    <div class="form-group">
+                                        <label class="control-label col-sm-2" for="sss">{{field.label}}: </label>
+                                        <div class="col-sm-10">
+                                            {% render_field field class+="form-control" placeholder=field.label required="required"%}
+                                        </div>
+
+                                    </div>
+                                    {% endfor %}
+
+
+                                    <label class="control-label col-sm-2" for="sss"></label>
+                                    <button type="submit" name="submit" value="upcomming"
+                                        class="btn btn-primary">Submit</button>
+                                </form>
+
+
+                            </div>
+                        </div>
+                        <div id="London2" class="tabcontent">
+
+                            <div class="container" style="width: 100%;">
+                                <h2>Syllabus Form</h2>
+
+                                <form action="{% url 'website_render'%}" method="POST">
+                                    {% csrf_token%}
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-md-4"><select class="form-control"
+                                                    name="dept_name_syllabus">
+                                                    {% for ll in departments%}
+                                                    <option value="{{ll.department_id}}">{{ll.department_name}}</option>
+                                                    {% endfor %}
+
+                                                </select></div>
+                                            <div class="col-md-4"><select class="form-control"
+                                                    name="subject_name_syllabus">
+                                                    {% for jj in departments%}
+                                                    {% for ll in jj.subjects%}
+                                                    <option value="{{ll.subject_id}}">{{ll.subject_name}}</option>
+                                                    {% endfor %}
+                                                    {% endfor %}
+
+                                                </select></div>
+                                                <input type="hidden" name="college" value="{{college_id}}">
+
+                                            <div class="col-md-2">
+                                                <button type="submit" name="submit" value="get_syllabus"
+                                                    class="btn btn-primary">Go</button>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </form>
+
+                                {% if go_true %}
+                                
+                                {% for myvalsyl in syllabusObj.2 %}
+                                <button type="button" class="collapsible">{{myvalsyl.unit}}.
+                                    {{myvalsyl.unit_name}}</button>
+                                <div class="content">
+                                    <p>
+                                        <form class="form-horizontal" method="POST">
+                                            {% csrf_token %}
+                                            <input type="hidden" name="syllabus_id" value="{{myvalsyl.id}}">
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="college_name">Unit:
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <input class="form-control" type="text" name="unit"
+                                                        value="{{myvalsyl.unit}}">
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="college_name">Unit Name:
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control"
+                                                        name="unit_name">{{myvalsyl.unit_name}}</textarea>
+                                                </div>
+                                            </div>
+
+                                            <div class="form-group">
+                                                <label class="control-label col-sm-2" for="college_name">Topics:
+                                                </label>
+                                                <div class="col-sm-10">
+                                                    <textarea class="form-control" name="topics">{{myvalsyl.topics}}
+                                                    </textarea>
+                                                </div>
+                                            </div>
+
+                                            <input type="hidden" name="update" value="1">
+
+                                            <label class="control-label col-sm-2" for="college_name"></label>
+                                            <button type="submit" name="submit" value="syllabus"
+                                                class="btn btn-primary">Update</button>
+
+                                        </form>
+                                    </p>
+                                </div>
+                                {% endfor%}
+
+                                <button type="button" class="collapsible">Upload Syllabus</button>
+                                <div class="content">
+                                    <form class="form-horizontal" method="POST" enctype="multipart/form-data">
+                                        {% csrf_token %}
+                                        <input type="hidden" name="college" value="{{college_id}}">
+                                        <input type="hidden" name="department" value="{{syllabusObj.0}}">
+                                        <input type="hidden" name="subject" value="{{syllabusObj.1}}">
+                                        {% for field in syllabusForm.visible_fields %}
+
+                                        <div class="form-group">
+                                            <label class="control-label col-sm-2" for="lll">{{field.label}}: </label>
+                                            <div class="col-sm-10">
+                                                {% render_field field class+="form-control" placeholder=field.label required="required"%}
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                        <label class="control-label col-sm-2" for="llll"></label>
+
+                                        <button type="submit" name="submit" value="syllabus"
+                                            class="btn btn-primary">Submit</button>
+
+
+
+                                    </form>
+                                </div>
+                                {% endif %}
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+        <script>
+            function openCity(evt, cityName) {
+                var i, tabcontent, tablinks;
+                tabcontent = document.getElementsByClassName("tabcontent");
+                for (i = 0; i < tabcontent.length; i++) {
+                    tabcontent[i].style.display = "none";
+                }
+                tablinks = document.getElementsByClassName("tablinks");
+                for (i = 0; i < tablinks.length; i++) {
+                    tablinks[i].className = tablinks[i].className.replace(" active", "");
+                }
+                document.getElementById(cityName).style.display = "block";
+                evt.currentTarget.className += " active";
+            }
+
+            var coll = document.getElementsByClassName("collapsible");
+            var i;
+
+            for (i = 0; i < coll.length; i++) {
+                coll[i].addEventListener("click", function () {
+                    this.classList.toggle("active");
+                    var content = this.nextElementSibling;
+                    if (content.style.display === "block") {
+                        content.style.display = "none";
+                    } else {
+                        content.style.display = "block";
+                    }
+                });
+            }
+        </script>
+
+    </div>
+
+
+
+    <script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+    <script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+    <script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+    <script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+    <script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+    <script src="{% static 'plugins/easing/easing.js' %}"></script>
+    <script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+    <script src="{% static 'js/custom.js' %}"></script>
+</body>
+
+</html>

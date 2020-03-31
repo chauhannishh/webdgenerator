@@ -1,0 +1,47 @@
+{
+    "college_id": "College ID",
+    "college": "College Name",
+    "university": "University",
+    "address": "Address",
+    "contact_number": "Contact Number",
+    "logo": "Logo url",
+    "domain": "Domain",
+    "about_us": "About Us",
+    "image1": "Image1",
+    "image2": "Image2",
+    "image3": "Image3",
+    "image4": "Image4",
+    "image5": "Image5",
+    "departments": [{
+        "department_id": "Department ID",
+        "department_name": "Department Name",
+        "vision_mission": "Vision and Mission",
+        "subjects": [{
+            "subject_id": "Subject ID1",
+            "subject_name": "Subject Name",
+            "semester": "Semester",
+            "taught_by": "Taught By",
+            "syllabus": {
+                "syllabus": [{
+                    "unit": "Unit1",
+                    "unit_name": "Unit Name",
+                    "topics": "Topics",
+                    "recommended_books": [{
+                        "title": "Book Title",
+                        "publisher": ["Publishers"],
+                        "authors": ["Authors"]
+                    }]
+                }],
+                "completed": "Completed percentage"
+            }
+        }]
+    }],
+    "upcoming_events": [{
+        "event_id": "Event id",
+        "event_name": "Event name",
+        "event_description": "Event Description",
+        "event_image": "Event Image",
+        "start_date": "Event start date",
+        "end_date": "Event end date"
+    }]
+}

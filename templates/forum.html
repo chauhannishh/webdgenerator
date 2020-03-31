@@ -1,0 +1,62 @@
+<html>
+<head>
+<style>
+.container {
+  border: 2px solid #dedede;
+  background-color: #f1f1f1;
+  border-radius: 5px;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+.darker {
+  border-color: #ccc;
+  background-color: #ddd;
+}
+
+.container::after {
+  content: "";
+  clear: both;
+  display: table;
+}
+
+.container img {
+  float: left;
+  max-width: 60px;
+  width: 100%;
+  margin-right: 20px;
+  border-radius: 50%;
+}
+
+.container img.right {
+  float: right;
+  margin-left: 20px;
+  margin-right:0;
+}
+
+.time-right {
+  float: right;
+  color: #aaa;
+}
+
+.time-left {
+  float: left;
+  color: #999;
+}
+</style>
+</head>
+<body>
+    {% for message in messages %}
+    <div class="container">
+        <i class="fa fa-user" aria-hidden="true"></i>
+        <p>  Sent By: {{message.sent_by}} </p>
+        <p> Message: {{message.message}} </p>
+        <span class="time-right">{{message.sent_at}}</span>
+    </div>
+    {%endfor%}
+    <form action="forums" method="POST">
+        <input type="text" placeholder="Send.." name="send", id="send">
+        <button type="submit">Submit</button>
+    </form>
+</body>
+<html>

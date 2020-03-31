@@ -1,0 +1,68 @@
+<html>
+
+<head>
+    <title> {{CollegeName}}_{{DepartmentName}}_{{SubjectName}}.pdf </title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+        
+        td,
+        th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h1 align="center"> {{CollegeName}} </h1>
+    <h2 align="center"> {{DepartmentName}} </h2>
+    <h3 align="center"> {{SubjectName}} </h3>
+
+    <div>
+        <table>
+            <tr>
+                <td colspan="4">
+                    <h4><b>Course Contents:</b></h4>
+                </td>
+            </tr>
+            {% for syl in syllabus %}
+            <tr>
+                <td>
+                    <b>{{syl.unit}}:</b>
+                </td>
+                <td>
+                    <b>{{syl.unit_name}}</b>
+                </td>
+                <td colspan="2"></td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    {{syl.topics}}
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    <b>Recommended Books</b>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="4">
+                    {% for book in syl.recommended_books%} {{book.title}}
+                    <br /> {% endfor %}
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</body>
+
+</html>

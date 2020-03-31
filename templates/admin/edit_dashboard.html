@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+{% load widget_tweaks %}
+<html lang="en">
+<head>
+    <title>Bootstrap Example</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <style>
+    
+    </style>
+</head>
+<body>
+<div class="jumbotron">
+    {{data.college_name}}
+    <div class="container">
+            <h2>Departments</h2>
+            <p>The table shows the list of Departments.</p>            
+            <table class="table table-hover">
+              <thead>
+                <tr>
+                  <th>Deppartment Name</th>
+                  <th>Vision</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for val in data.departments %}
+                <form action="">
+                        <tr>
+                                <td><input type="text" value="{{val.department_name}}"></td>
+                                <td><input type="text" value="{{val.vision_mission}}"></td>
+                                <td><input type="submit" value="{{val.department_id}}" name="Update"></td>
+                        </tr>
+                </form>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,339 @@
+<html lang="en">
+
+<head>
+	<title>Subjects</title>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="description" content="Unicat project">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+
+	<link rel="stylesheet" type="text/css" href="/static/styles/bootstrap4/bootstrap.min.css">
+	<link href="/static/plugins/font-awesome-4.7.0/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+	<link href="/static/plugins/colorbox/colorbox.css" rel="stylesheet" type="text/css">
+	<link rel="stylesheet" type="text/css" href="/static/plugins/OwlCarousel2-2.2.1/owl.carousel.css">
+	<link rel="stylesheet" type="text/css" href="/static/plugins/OwlCarousel2-2.2.1/owl.theme.default.css">
+	<link rel="stylesheet" type="text/css" href="/static/plugins/OwlCarousel2-2.2.1/animate.css">
+	<link rel="stylesheet" type="text/css" href="/static/styles/courses.css">
+	<link rel="stylesheet" type="text/css" href="/static/styles/courses_responsive.css">
+
+
+</head>
+
+<body>
+	<div class="parallax-mirror"
+		style="visibility: hidden; z-index: -100; position: fixed; top: 0px; left: 0px; overflow: hidden; height: 400px; width: 1349px; transform: translate3d(0px, 568.5px, 0px);">
+		<img class="parallax-slider" src="http://127.0.0.1:8000/media/newsletter.jpg"
+			style="position: absolute; height: 420px; width: 1792px; max-width: none; transform: translate3d(-221px, -99.7px, 0px);">
+	</div>
+
+	<div class="super_container">
+
+		<!-- Header -->
+		<header class="header">
+			<div class="top_bar">
+				<div class="top_bar_container">
+					<div class="container">
+						<div class="row">
+							<div class="col">
+								<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+									<ul class="top_bar_contact_list">
+										<li>
+											<div class="question"></div>
+										</li>
+										<li>
+										</li>
+										<li>
+											<div></div>
+										</li>
+									</ul>
+
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- Top Bar -->
+
+
+			<!-- Header Content -->
+			<div class="header_container">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="header_content d-flex flex-row align-items-center justify-content-start">
+								<div class="logo_container">
+										<a href="#">
+												<img src="http://127.0.0.1:8000/media/{{data.logo}}" style="width: 50px;height: 50px;">
+												<div class="logo_text">
+													<h4>{{ data.college_name }}</h4>
+													<h5>{{ data.university }}</h5>
+												</div>
+											</a>
+								</div>
+								<nav class="main_nav_contaner ml-auto">
+									<ul class="main_nav">
+										<li class="active"><a href="#">Home</a></li>
+										<li><a href="Departments.html">Departments</a></li>
+										<li><a href="contact.html">Contact</a></li>
+
+								</ul>
+
+									</ul>
+
+									<!-- Hamburger -->
+
+
+								</nav>
+
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+
+		</header>
+
+		<!-- Menu -->
+
+		<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+			<div class="menu_close_container">
+				<div class="menu_close">
+					<div></div>
+					<div></div>
+				</div>
+			</div>
+			<div class="search">
+				<form action="#" class="header_search_form menu_mm">
+					<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+					<button
+						class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+						<i class="fa fa-search menu_mm" aria-hidden="true"></i>
+					</button>
+				</form>
+			</div>
+			<nav class="menu_nav">
+				<ul class="menu_mm">
+					<li class="menu_mm"><a href="#">Home</a></li>
+					<li class="menu_mm"><a href="#">Departments</a></li>
+					<li class="menu_mm"><a href="#">Contact</a></li>
+				</ul>
+			</nav>
+		</div>
+
+		<!-- Home -->
+
+		<div class="home">
+			<div class="breadcrumbs_container">
+				<div class="container">
+					<div class="row">
+						<div class="col">
+							<div class="breadcrumbs">
+								<ul>
+									<li><a href="#">Home</a></li>
+									<li>Departments</li>
+								</ul>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Courses -->
+
+		<div class="courses">
+			<div class="container">
+				<div class="row">
+
+					<!-- Courses Main Content -->
+					<div class="col-lg-12">
+
+						<div class="courses_container">
+							<div class="row courses_row">
+
+								<!-- Course -->
+							{% for val in subj %}.
+							<div class="col-md-5 course_col">
+									<div class="course">
+										<table class="table table-striped">
+											<thead>
+											  <tr>
+												<th>Subject Name</th>
+												<th>Syllabus</th>
+												<th>Prediction</th>
+												<th>Online/Offline</th>
+											  </tr>
+											</thead>
+											<tbody>
+											  <tr>
+												<td>{{val.subject_name}}</td>
+												<td>
+												<form action="{% url 'generate_syllabus_pdf' %}" method="POST">
+												{% csrf_token %}
+												<input type="hidden" name="Syllabus" value={{subj.0.subject_id}}>
+												<button type="submit" class="btn btn-primary">Get Syllabus</button>
+												
+												</form>
+												</td>
+												<td>95%</td>
+												<td><button class="btn btn-primary">Get Online</button></td>
+											  </tr>
+											  <tr>
+											
+											</tbody>
+										  </table>
+									</div>
+								</div>
+							{% endfor %}
+
+							</div>
+
+						</div>
+					</div>
+
+					<!-- Courses Sidebar -->
+
+				</div>
+			</div>
+		</div>
+
+		<!-- Newsletter -->
+
+
+		<!-- Footer -->
+		<footer class="footer">
+				<div class="footer_background" style="background-image:url(http://127.0.0.1:8000/media/footer_background.png)"></div>
+				<div class="container">
+					<div class="row footer_row">
+						<div class="col">
+							<div class="footer_content">
+								<div class="row">
+		
+									<div class="col-lg-3 footer_col">
+							
+										<!-- Footer About -->
+										<div class="footer_section footer_about">
+											<div class="footer_logo_container">
+												<a href="#">
+													<div class="footer_logo_text">{{data.college_name}}</div>
+												</a>
+											</div>
+											<div class="footer_about_text">
+												<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+											</div>
+											<div class="footer_social">
+												<ul>
+													<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+													<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+													<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+													<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+												</ul>
+											</div>
+										</div>
+										
+									</div>
+		
+									<div class="col-lg-3 footer_col">
+							
+										<!-- Footer Contact -->
+										<div class="footer_section footer_contact">
+											<div class="footer_title">Contact Us</div>
+											<div class="footer_contact_info">
+												<ul>
+													
+													<li>Phone:  +(91) {{data.contact_number}}</li>
+													<li>{{data.address}}</li>
+												</ul>
+											</div>
+										</div>
+										
+									</div>
+		
+									<div class="col-lg-3 footer_col">
+							
+										<!-- Footer links -->
+										<div class="footer_section footer_links">
+											<div class="footer_title">Contact Us</div>
+											<div class="footer_links_container">
+												<ul>
+													<li><a href="#">Home</a></li>
+													<li><a href="contact.html">Contact</a></li>
+													<li><a href="courses.html">Departments</a></li>
+													<li><a href="#">Events</a></li>
+													<li><a href="#">Gallery</a></li>
+													<li><a href="#">FAQs</a></li>
+												</ul>
+											</div>
+										</div>
+										
+									</div>
+		
+								
+		
+								</div>
+							</div>
+						</div>
+					</div>
+		
+					<div class="row copyright_row">
+						<div class="col">
+							<div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
+								<div class="cr_text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+		Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+		<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+								<div class="ml-lg-auto cr_links">
+									<ul class="cr_list">
+										<li><a href="#">Copyright notification</a></li>
+										<li><a href="#">Terms of Use</a></li>
+										<li><a href="#">Privacy Policy</a></li>
+									</ul>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</footer>
+	</div>
+
+	<script src="/static/js/jquery-3.2.1.min.js"></script>
+	<script src="/static/styles/bootstrap4/popper.js"></script>
+	<script src="/static/styles/bootstrap4/bootstrap.min.js"></script>
+	<script src="/static/OwlCarousel2-2.2.1/owl.carousel.js"></script>
+	<script src="/static/easing/easing.js"></script>
+	<script src="/static/plugins/parallax-js-master/parallax.min.js"></script>
+	<script src="/static/plugins/colorbox/jquery.colorbox-min.js"></script>
+	<script src="/static/js/courses.js"></script>
+
+	<div id="cboxOverlay" style="display: none;"></div>
+	<div id="colorbox" class="" role="dialog" tabindex="-1" style="display: none;">
+		<div id="cboxWrapper">
+			<div>
+				<div id="cboxTopLeft" style="float: left;"></div>
+				<div id="cboxTopCenter" style="float: left;"></div>
+				<div id="cboxTopRight" style="float: left;"></div>
+			</div>
+			<div style="clear: left;">
+				<div id="cboxMiddleLeft" style="float: left;"></div>
+				<div id="cboxContent" style="float: left;">
+					<div id="cboxTitle" style="float: left;"></div>
+					<div id="cboxCurrent" style="float: left;"></div><button type="button"
+						id="cboxPrevious"></button><button type="button" id="cboxNext"></button><button type="button"
+						id="cboxSlideshow"></button>
+					<div id="cboxLoadingOverlay" style="float: left;"></div>
+					<div id="cboxLoadingGraphic" style="float: left;"></div>
+				</div>
+				<div id="cboxMiddleRight" style="float: left;"></div>
+			</div>
+			<div style="clear: left;">
+				<div id="cboxBottomLeft" style="float: left;"></div>
+				<div id="cboxBottomCenter" style="float: left;"></div>
+				<div id="cboxBottomRight" style="float: left;"></div>
+			</div>
+		</div>
+		<div style="position: absolute; width: 9999px; visibility: hidden; display: none; max-width: none;"></div>
+	</div>
+</body>
+
+</html>

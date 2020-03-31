@@ -1,0 +1,446 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>{{ data.college_name }}</title>
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="description" content="{{ data.college_name }}">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'styles/bootstrap4/bootstrap.min.css' %}">
+<link href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}" rel="stylesheet" type="text/css">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.css' %}">
+<link rel="stylesheet" type="text/css" href= "{% static 'plugins/OwlCarousel2-2.2.1/owl.theme.default.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'plugins/OwlCarousel2-2.2.1/animate.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/main_styles.css' %}">
+<link rel="stylesheet" type="text/css" href="{% static 'styles/responsive.css' %}">
+<link rel="shortcut icon" href="http://127.0.0.1:8000/media/{{data.logo}}" />
+</head>
+<body>
+
+<div class="super_container">
+
+	<!-- Header -->
+
+	<header class="header">
+			<div class="top_bar">
+					<div class="top_bar_container">
+						<div class="container">
+							<div class="row">
+								<div class="col">
+									<div class="top_bar_content d-flex flex-row align-items-center justify-content-start">
+										<ul class="top_bar_contact_list">
+											<li><div class="question"></div></li>
+											<li>
+											</li>
+											<li>
+												<div></div>
+											</li>
+										</ul>
+										
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>				
+				</div>
+		<!-- Top Bar -->
+
+
+		<!-- Header Content -->
+		<div class="header_container">
+			<div class="container">
+				<div class="row">
+					<div class="col">
+						<div class="header_content d-flex flex-row align-items-center justify-content-start">
+							<div class="logo_container">
+								<a href="#">
+									<img src="http://127.0.0.1:8000/media/{{data.logo}}" style="width: 50px;height: 50px;">
+									<div class="logo_text">
+										<h4>{{ data.college_name }}</h4>
+										<h5>{{ data.university }}</h5>
+									</div>
+								</a>
+							</div>
+							<nav class="main_nav_contaner ml-auto">
+								<ul class="main_nav">
+									<li class="active"><a href="#">Home</a></li>
+									<li><a href="department">Departments</a></li>
+									<li><a href="#">Contact</a></li>
+									{% if user.is_authenticated %}
+									<li><a href="user_logout">Logout</a></li>
+									{%else%}
+									<li><a href="lp">Login</a></li>
+									{%endif%}
+								</ul>
+
+								<!-- Hamburger -->
+
+								
+							</nav>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+				
+	</header>
+
+	<!-- Menu -->
+
+	<div class="menu d-flex flex-column align-items-end justify-content-start text-right menu_mm trans_400">
+		<div class="menu_close_container"><div class="menu_close"><div></div><div></div></div></div>
+		<div class="search">
+			<form action="#" class="header_search_form menu_mm">
+				<input type="search" class="search_input menu_mm" placeholder="Search" required="required">
+				<button class="header_search_button d-flex flex-column align-items-center justify-content-center menu_mm">
+					<i class="fa fa-search menu_mm" aria-hidden="true"></i>
+				</button>
+			</form>
+		</div>
+		<nav class="menu_nav">
+			<ul class="menu_mm">
+				<li class="menu_mm"><a href="index.html">Home</a></li>
+				<li class="menu_mm"><a href="#">About</a></li>
+				<li class="menu_mm"><a href="#">Courses</a></li>
+				<li class="menu_mm"><a href="#">Blog</a></li>
+				<li class="menu_mm"><a href="#">Page</a></li>
+				<li class="menu_mm"><a href="contact.html">Contact</a></li>
+			</ul>
+		</nav>
+	</div>
+	
+	<!-- Home -->
+
+	<div class="home">
+		<div class="home_slider_container">
+			
+			<!-- Home Slider -->
+			<div class="owl-carousel owl-theme home_slider">
+				
+				<!-- Home Slider Item -->
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(http://127.0.0.1:8000/media/{{data.image1}})"></div>
+					<div class="home_slider_content">
+						<div class="container">
+						
+						</div>
+					</div>
+				</div>
+
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(http://127.0.0.1:8000/media/{{data.image2}})"></div>
+					<div class="home_slider_content">
+						<div class="container">
+						
+						</div>
+					</div>
+				</div>
+
+				<div class="owl-item">
+					<div class="home_slider_background" style="background-image:url(http://127.0.0.1:8000/media/{{data.image3}})"></div>
+					<div class="home_slider_content">
+						<div class="container">
+						
+						</div>
+					</div>
+				</div>
+				<div class="owl-item">
+						<div class="home_slider_background" style="background-image:url(http://127.0.0.1:8000/media/{{data.image4}})"></div>
+						<div class="home_slider_content">
+							<div class="container">
+							
+							</div>
+						</div>
+					</div><div class="owl-item">
+							<div class="home_slider_background" style="background-image:url(http://127.0.0.1:8000/media/{{data.image5}})"></div>
+							<div class="home_slider_content">
+								<div class="container">
+								
+								</div>
+							</div>
+						</div>
+
+			</div>
+		</div>
+
+		<!-- Home Slider Nav -->
+
+		<div class="home_slider_nav home_slider_prev"><i class="fa fa-angle-left" aria-hidden="true"></i></div>
+		<div class="home_slider_nav home_slider_next"><i class="fa fa-angle-right" aria-hidden="true"></i></div>
+	</div>
+
+	<!-- Features -->
+
+	<div class="features">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<h2 class="section_title">Welcome To {{data.college_name}}</h2>
+						<div class="section_subtitle"><p>{{data.about_us}}</p></div>
+					</div>
+				</div>
+			</div>
+			<div class="row features_row">
+				
+				<!-- Features Item -->
+				<div class="col-lg-3 feature_col">
+					<div class="feature text-center trans_400">
+						<div class="feature_icon"><img src="http://127.0.0.1:8000/media/icon_1.png" alt=""></div>
+						<h3 class="feature_title">The Experts</h3>
+						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+					</div>
+				</div>
+
+				<!-- Features Item -->
+				<div class="col-lg-3 feature_col">
+					<div class="feature text-center trans_400">
+						<div class="feature_icon"><img src="http://127.0.0.1:8000/media/icon_2.png" alt=""></div>
+						<h3 class="feature_title">Book & Library</h3>
+						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+					</div>
+				</div>
+
+				<!-- Features Item -->
+				<div class="col-lg-3 feature_col">
+					<div class="feature text-center trans_400">
+						<div class="feature_icon"><img src="http://127.0.0.1:8000/media/icon_3.png" alt=""></div>
+						<h3 class="feature_title">Best Courses</h3>
+						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+					</div>
+				</div>
+
+				<!-- Features Item -->
+				<div class="col-lg-3 feature_col">
+					<div class="feature text-center trans_400">
+						<div class="feature_icon"><img src="http://127.0.0.1:8000/media/icon_4.png" alt=""></div>
+						<h3 class="feature_title">Award & Reward</h3>
+						<div class="feature_text"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit</p></div>
+					</div>
+				</div>
+
+			</div>
+		</div>
+	</div>
+
+	<!-- Popular Courses -->
+
+
+	<!-- Events -->
+
+
+
+	<!-- Team -->
+
+	<div class="team">
+		<div class="team_background parallax-window" data-parallax="scroll" data-image-src="http://127.0.0.1:8000/media/team_background.jpg" data-speed="0.8"></div>
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<h2 class="section_title">Upcoming events</h2>
+						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+					</div>
+				</div>
+			</div>
+			<div class="row events_row">
+
+					<!-- Event -->
+					
+					{% for vali in event_list %}
+					<div class="col-lg-4 event_col">
+							<div class="event event_left">
+								<div class="event_image"><img src="http://127.0.0.1:8000/media/{{vali.event_image}}" alt=""></div>
+								<div class="event_body d-flex flex-row align-items-start justify-content-start">
+									<div class="event_content">
+										<div class="event_title"><a href="#">{{vali.event_name}}</a></div>
+										<div class="event_info_container">
+											<div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>{{vali.start_date}}</span></div>
+											<div class="event_info"><i class="fa fa-clock-o" aria-hidden="true"></i><span>{{vali.end_date}}</span></div>
+											<div class="event_text">
+												<p>{{vali.event_description}}</p>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					{% endfor %}
+	
+				</div>
+		</div>
+	</div>
+
+	<!-- Latest News -->
+
+	<div class="news">
+		<div class="container">
+			<div class="row">
+				<div class="col">
+					<div class="section_title_container text-center">
+						<h2 class="section_title">Latest News</h2>
+						<div class="section_subtitle"><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec vel gravida arcu. Vestibulum feugiat, sapien ultrices fermentum congue, quam velit venenatis sem</p></div>
+					</div>
+				</div>
+			</div>
+			<div class="row news_row">
+				<div class="col-lg-7 news_col">
+					
+					<!-- News Post Large -->
+					<div class="news_post_large_container">
+						<div class="news_post_large">
+							<div class="news_post_image"><img src="http://127.0.0.1:8000/media/{{data.image5}}" alt=""></div>
+							<div class="news_post_large_title"><a href="{{clg_news_img.link}}">{{clg_news_img.title}}</a></div>
+							<div class="news_post_meta">
+								<ul>
+									<li>{{clg_news_img.date}}</li>
+								</ul>
+							</div>
+							<div class="news_post_text">
+								<p>{{clg_news_img.description}}</p>
+							</div>
+							<div class="news_post_link"><a href="{{clg_news_img.link}}">read more</a></div>
+						</div>
+					</div>
+				</div>
+
+				<div class="col-lg-5 news_col">
+					<div class="news_posts_small">
+
+						<!-- News Posts Small -->
+						{% for val in clg_news %}
+						<div class="news_post_small">
+								<div class="news_post_small_title"><a href="{{val.link}}">{{val.title}}</a></div>
+								<div class="news_post_meta">
+									<ul>
+										<li>{{val.date}}</li>
+									</ul>
+								</div>
+							</div>
+						{%endfor%}
+
+						
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- Newsletter -->
+
+
+
+	<!-- Footer -->
+
+	<footer class="footer">
+		<div class="footer_background" style="background-image:url(http://127.0.0.1:8000/media/footer_background.png)"></div>
+		<div class="container">
+			<div class="row footer_row">
+				<div class="col">
+					<div class="footer_content">
+						<div class="row">
+
+							<div class="col-lg-3 footer_col">
+					
+								<!-- Footer About -->
+								<div class="footer_section footer_about">
+									<div class="footer_logo_container">
+										<a href="#">
+											<div class="footer_logo_text">{{data.college_name}}</div>
+										</a>
+									</div>
+									<div class="footer_about_text">
+										<p>Lorem ipsum dolor sit ametium, consectetur adipiscing elit.</p>
+									</div>
+									<div class="footer_social">
+										<ul>
+											<li><a href="#"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-google-plus" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-instagram" aria-hidden="true"></i></a></li>
+											<li><a href="#"><i class="fa fa-twitter" aria-hidden="true"></i></a></li>
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+
+							<div class="col-lg-3 footer_col">
+					
+								<!-- Footer Contact -->
+								<div class="footer_section footer_contact">
+									<div class="footer_title">Contact Us</div>
+									<div class="footer_contact_info">
+										<ul>
+											
+											<li>Phone:  +(91) {{data.contact_number}}</li>
+											<li>{{data.address}}</li>
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+
+							<div class="col-lg-3 footer_col">
+					
+								<!-- Footer links -->
+								<div class="footer_section footer_links">
+									<div class="footer_title">Contact Us</div>
+									<div class="footer_links_container">
+										<ul>
+											<li><a href="#">Home</a></li>
+											<li><a href="#">Contact</a></li>
+											<li><a href="department">Departments</a></li>
+											<li><a href="#">Events</a></li>
+											<li><a href="#">Gallery</a></li>
+											<li><a href="#">FAQs</a></li>
+										</ul>
+									</div>
+								</div>
+								
+							</div>
+
+						
+
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="row copyright_row">
+				<div class="col">
+					<div class="copyright d-flex flex-lg-row flex-column align-items-center justify-content-start">
+						<div class="cr_text"><!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved 
+<!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. --></div>
+						<div class="ml-lg-auto cr_links">
+							<ul class="cr_list">
+								<li><a href="#">Copyright notification</a></li>
+								<li><a href="#">Terms of Use</a></li>
+								<li><a href="#">Privacy Policy</a></li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</footer>
+</div>
+
+<script src="{% static 'js/jquery-3.2.1.min.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/popper.js' %}"></script>
+<script src="{% static 'styles/bootstrap4/bootstrap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TweenMax.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/TimelineMax.min.js' %}"></script>
+<script src="{% static 'plugins/scrollmagic/ScrollMagic.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/animation.gsap.min.js' %}"></script>
+<script src="{% static 'plugins/greensock/ScrollToPlugin.min.js' %}"></script>
+<script src="{% static 'plugins/OwlCarousel2-2.2.1/owl.carousel.js' %}"></script>
+<script src="{% static 'plugins/easing/easing.js' %}"></script>
+<script src="{% static 'plugins/parallax-js-master/parallax.min.js' %}"></script>
+<script src="{% static 'js/custom.js' %}"></script>
+</body>
+</html>
